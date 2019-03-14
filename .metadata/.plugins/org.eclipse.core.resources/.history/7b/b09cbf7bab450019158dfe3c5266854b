@@ -1,0 +1,28 @@
+grammar dk.sdu.mdsd.MathInterpreter with org.eclipse.xtext.common.Terminals
+
+generate mathInterpreter "http://www.sdu.dk/mdsd/MathInterpreter"
+
+Solution:
+	('given'
+	(variables+=Variable)*)?
+	'solve'
+	expression=PlusOrMinus
+;
+
+Variable:
+	name=ID value=PlusOrMinus
+;
+
+PlusOrMinus :
+	exp=MultiplyOrDivide (op='*' right=MultiplyOrDivide | op='/' right=MultiplyOrDivide)*	
+;
+
+MultiplyOrDivide:
+	exp=Primary (op='*' right=Primary | op='/' right=Primary)*
+;
+
+Primary:
+	{Number} value=INT |
+	{VariableRef} value=[Variable] |
+	{Expression} '(' value=PlusOrMinus ')' 
+;

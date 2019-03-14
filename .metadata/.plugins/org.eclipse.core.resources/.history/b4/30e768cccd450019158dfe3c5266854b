@@ -1,0 +1,23 @@
+package dk.sdu.mdsd.ui
+
+import com.google.inject.Inject
+import dk.sdu.mdsd.interpreter.ExpressionsInterpreter
+import dk.sdu.mdsd.mathInterpreter.Expression
+import org.eclipse.emf.ecore.EObject
+import org.eclipse.xtext.ui.editor.hover.html.DefaultEObjectHoverProvider
+
+class ExpressionsEObjectHoverProvider extends DefaultEObjectHoverProvider {
+	@Inject extension ExpressionsInterpreter
+	
+	override getHoverInfoAsHtml(EObject o) {
+		if(o instanceof Expression) {
+			val exp = o as Expression
+			return '''
+			<p>
+			value: <b>«exp.evaluate.toString»</b>
+			</p>
+			'''
+		}
+		return super.getHoverInfoAsHtml(o)
+	}
+}

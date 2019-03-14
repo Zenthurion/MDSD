@@ -1,0 +1,10 @@
+package dk.sdu.mdsd.interpreter
+
+import dk.sdu.mdsd.mathInterpreter.Expression
+
+class ExpressionInterpreter {
+	public class ExpressionsInterpreter {
+	def dispatch Object interpret(Expression e)
+}
+	
+}

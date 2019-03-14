@@ -1,0 +1,14 @@
+package dk.sdu.mdsd.interpreter
+
+import dk.sdu.mdsd.mathInterpreter.Expression
+import dk.sdu.mdsd.mathInterpreter.Num
+import dk.sdu.mdsd.mathInterpreter.Plus
+
+class ExpressionsInterpreter {
+	def dispatch Object interpret(Expression e) {
+		switch(e){
+			Num: e.value
+			Plus: e.left + e.right
+		}
+	}
+}
